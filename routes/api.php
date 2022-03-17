@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
+// contrtoladores para la api 
+
+Route::get('Publicaciones/listado', 'api\PublicacionesController@listado');
+Route::post('Dispositivos/registra', 'api\DispositivosController@registra');
+
+// USUARIOS
+Route::post('User/registra', 'api\UserController@registra');
+Route::get('User/inicio', 'api\UserController@inicio');
+Route::post('User/login', 'api\UserController@login');
+Route::post('User/familiares', 'api\UserController@familiares');
+
+// LOCALIZACION
+Route::post('User/localizacion', 'api\UserController@localizacion');
