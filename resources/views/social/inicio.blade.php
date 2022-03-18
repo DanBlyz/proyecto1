@@ -112,8 +112,6 @@
 
         <!--begin::Row-->
         <div class="row" data-sticky-container="">
-            {{-- @dd($publicaciones) --}}
-            {{-- {{ session()->get('user')}} --}}
 
             {{-- lado izquierdo --}}
             
@@ -135,30 +133,6 @@
                         <div class="col-md-12">
 
                             <h3>CATEGORIAS</h3>
-
-                            @php
-                                $categorias = App\Categoria::get();
-                            @endphp
-
-                            @forelse ($categorias as $c)
-                                <div class="d-flex align-items-center mb-9 bg-light-success rounded p-5">
-                                    <!--begin::Icon-->
-                                    <i class="fas fa-arrow-alt-circle-right text-success"></i>&nbsp;
-                                    <!--end::Icon-->
-                                    <!--begin::Title-->
-                                    <div class="d-flex flex-column flex-grow-1 mr-2">
-                                        <a href="#" onclick="categoria('{{ $c->id }}')"
-                                            class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">{{ $c->nombre }}</a>
-                                        <span class="text-muted font-weight-bold"></span>
-                                    </div>
-                                    <!--end::Title-->
-                                    <!--begin::Lable-->
-                                    <span class="font-weight-bolder text-success py-1 font-size-lg"></span>
-                                    <!--end::Lable-->
-                                </div>
-                            @empty
-                                
-                            @endforelse
                             
                         </div>
                         
@@ -225,78 +199,7 @@
                 <div class="card card-custom sticky" data-sticky="true" data-margin-top="90" data-sticky-for="1023" data-sticky-class="sticky">
                         <div class="alert mb-5 p-5" role="alert">
                             <h4 class="alert-heading">PUBLICIDAD</h4>
-                            @php
-                                $fotos = App\Publicidad::all();
-                                $cantFotos = App\Publicidad::count();
-                            @endphp
-                            @if ($cantFotos != 0 )
-                                @if ($cantFotos == 1)
-                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-295px"
-                                        style="background-image: url({{ asset('img_publicidad/'.$fotos[0]->banner) }})">
-                                    </div>    
-                                @elseif ($cantFotos == 2)
-                                    @php
-                                        $ran = rand(0,($cantFotos-1));
 
-                                        $arrayShow = array();
-
-                                        while(in_array($ran, $arrayShow)){
-                                            $ran = rand(0,($cantFotos-1));
-                                        }
-                                        array_push($arrayShow,$ran);
-                                    @endphp
-                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-295px"
-                                        style="background-image: url({{ asset('img_publicidad/'.$fotos[$ran]->banner) }})">
-                                    </div>
-                                    @php
-                                        while(in_array($ran, $arrayShow)){
-                                            $ran = rand(0,($cantFotos-1));
-                                        }
-                                        array_push($arrayShow,$ran);
-                                    @endphp
-                                    <br>
-                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-295px"
-                                        style="background-image: url({{ asset('img_publicidad/'.$fotos[$ran]->banner) }})">
-                                    </div>
-                                @else
-                                    @php
-                                        $ran = rand(0,($cantFotos-1));
-
-                                        $arrayShow = array();
-
-                                        while(in_array($ran, $arrayShow)){
-                                            $ran = rand(0,($cantFotos-1));
-                                        }
-                                        array_push($arrayShow,$ran);
-                                    @endphp
-                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-295px"
-                                        style="background-image: url({{ asset('img_publicidad/'.$fotos[$ran]->banner) }})">
-                                    </div>
-                                    @php
-                                        while(in_array($ran, $arrayShow)){
-                                            $ran = rand(0,($cantFotos-1));
-                                        }
-                                        array_push($arrayShow,$ran);
-                                    @endphp
-                                    <br>
-                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-295px"
-                                        style="background-image: url({{ asset('img_publicidad/'.$fotos[$ran]->banner) }})">
-                                    </div>
-                                    @php                            
-                                        while(in_array($ran, $arrayShow)){
-                                            $ran = rand(0,($cantFotos-1));
-                                        }
-                                        array_push($arrayShow,$ran);
-                                    @endphp
-                                    <br>
-                                    <div class="bgi-no-repeat bgi-size-cover rounded min-h-295px"
-                                        style="background-image: url({{ asset('img_publicidad/'.$fotos[$ran]->banner) }})">
-                                    </div>
-                                @endif
-                                
-                            @else
-                                
-                            @endif
                             
                         </div>
                 </div>

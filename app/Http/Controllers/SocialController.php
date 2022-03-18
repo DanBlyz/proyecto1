@@ -13,13 +13,14 @@ class SocialController extends Controller
     public function inicio()
     {
 
-        $publicaciones = Publicacion::orderBy('id', 'desc')
-                                    ->get();
+        // $publicaciones = Publicacion::orderBy('id', 'desc')
+        //                             ->get();
 
-        $categorias = Categoria::all();
+        // $categorias = Categoria::all();
 
-        return view('social.inicio')->with(compact('publicaciones','categorias'));
+        // return view('social.inicio')->with(compact('publicaciones','categorias'));
 
+        return view('social.inicio');
     }
 
     public function muromobil()
@@ -63,12 +64,13 @@ class SocialController extends Controller
 
     public function ajaxPublicaciones(Request $request){
 
-        $publicaciones = Publicacion::orderBy('id', 'desc')
-                                    ->limit(20)
-                                    ->get();
+        // $publicaciones = Publicacion::orderBy('id', 'desc')
+        //                             ->limit(20)
+        //                             ->get();
 
-        return view('social.ajaxPublicaciones')->with(compact('publicaciones'));
-        
+        // return view('social.ajaxPublicaciones')->with(compact('publicaciones'));
+
+        return view('social.ajaxPublicaciones');
     }
 
     public function addComent(Request $request){        
