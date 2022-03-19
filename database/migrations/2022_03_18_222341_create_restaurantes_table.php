@@ -26,7 +26,9 @@ class CreateRestaurantesTable extends Migration
             $table->string('hora_apertura')->nullable();
             $table->string('hora_cierre')->nullable();
             $table->string('validacion')->nullable();
-            $table->date('fecha_inicio')->nullable(); 
+            $table->date('fecha_inicio')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('ubicacion')->nullable();
             $table->timestamps();
         });
     }

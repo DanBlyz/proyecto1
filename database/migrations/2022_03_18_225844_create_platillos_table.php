@@ -18,6 +18,7 @@ class CreatePlatillosTable extends Migration
             $table->unsignedBigInteger('menu_id')->nullable(); //llave foreana
             $table->foreign('menu_id')->references('id')->on('menus'); //llave foreana
             $table->string('nombre')->nullable();
+            $table->string('tipo')->nullable();
             $table->string('ingredientes')->nullable();
             $table->string('precio')->nullable();
             $table->timestamps();
