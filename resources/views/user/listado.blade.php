@@ -36,6 +36,49 @@
 			</div>
 		</div>
 		<div class="card-body">
+			<!--begin: Datatable-->
+			<div class="table-responsive m-t-40">
+				<table class="table table-bordered table-hover table-striped" id="tabla-insumos">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Email</th>
+							<th>Celulares</th>
+							<th>Direccion</th>
+							<th>Departamento</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						@forelse ($usuarios as $us)
+							<tr>
+								<td>{{ $us->id }}</td>
+								<td>{{ $us->name }}</td>
+								<td>{{ $us->email }}</td>
+								<td>{{ $us->telefonos }}</td>
+								<td>{{ $us->direccion }}</td>
+								<td>{{ $us->pais }}</td>
+								<td>
+									{{-- <button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $us->id }}', '{{ $us->nombre }}', '{{ $us->email }}', '{{ $us->fecha_nacimiento }}', '{{ $us->direccion }}', '{{ $us->celulares }}', '{{ $us->departamento }}')">
+										<i class="flaticon2-edit"></i>
+									</button>
+									<button type="button" class="btn btn-sm btn-icon btn-danger" onclick="elimina('{{ $us->id }}', '{{ $us->nombre }}')">
+										<i class="flaticon2-cross"></i>
+									</button> --}}
+								</td>
+							</tr>
+						@empty
+							<h3 class="text-danger">NO EXISTEN CLIENTES</h3>
+						@endforelse
+					</tbody>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<!--end: Datatable-->
+		</div>
+		{{-- <div class="card-body">
 			<form  id="formulario-busqueda-usuarios">
 				@csrf
 				<div class="row">
@@ -80,7 +123,7 @@
 
 			</div>
 			<!--end: Datatable-->
-		</div>
+		</div> --}}
 	</div>
 									<!--end::Card-->
 @stop

@@ -65,9 +65,9 @@ class UserController extends Controller
 
     public function listado()
     {
-    	// $usuarios = User::all();
+    	$usuarios = User::all();
     	// dd($usuarios);
-        return view('user.listado');
+        return view('user.listado')->with(compact('usuarios'));
     }
 
     public function ajax_listado()
@@ -248,19 +248,48 @@ class UserController extends Controller
 
     public function guardaRegistro(Request $request)
     {
-        $persona                   = new User();
-        $persona->sector_id        = $request->sector_id;
-        $persona->name             = $request->name;
-        $persona->ci               = $request->ci;
-        $persona->email            = $request->email;
-        $persona->password         = Hash::make($request->password);
-        $persona->fecha_nacimiento = $request->fecha_nacimiento;
-        $persona->direccion        = $request->direccion;
-        $persona->celulares        = $request->celulares;
-        $persona->perfil           = $request->perfil;
-        $persona->save();
+        $usuario = new User();
+        // $persona                   = new User();
+        // $persona->sector_id        = $request->sector_id;
+        // $persona->name             = $request->name;
+        // $persona->ci               = $request->ci;
+        // $persona->email            = $request->email;
+        // $persona->password         = Hash::make($request->password);
+        // $persona->fecha_nacimiento = $request->fecha_nacimiento;
+        // $persona->direccion        = $request->direccion;
+        // $persona->celulares        = $request->celulares;
+        // $persona->perfil           = $request->perfil;
+        // $persona->save();
 
-        return redirect('User/listado');
+        // return redirect('User/listado');
+    }
+
+    public function listadogerente(Request $request){
+
+        $usuario = User::where('categoria_id',2)->get();
+
+        return view('categoria.gerente')->with(compact('usuario'));
+    }
+
+    public function guardagerente(Request $request){
+
+        $gerente_id = $request->input('categoria_id');
+
+        if($gerente_id == 0 ){
+            $usuario = new User();
+        }else{
+            $usuario = User::find($gerente_id);
+        }
+        $usuario->categoria_id     = 2;
+        $usuario->name             = $request->name;
+        $usuario->email            = $request->email;
+        $usuario->password         = Hash::make($request->password);
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->direccion        = $request->direccion;
+        $usuario->telefono        = $request->telefono;
+        $usuario->pais           = $request->pais;
+        $usuario->save();
+        return redirect('Categoria/gerente');
     }
 
 }

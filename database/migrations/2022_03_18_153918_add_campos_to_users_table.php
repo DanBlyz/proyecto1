@@ -21,6 +21,7 @@ class AddCamposToUsersTable extends Migration
             $table->string("nickname")->nullable()->after('password');
             $table->text('direccion')->nullable()->after('password');
             $table->date('fecha_nacimiento')->nullable()->after('password');
+            $table->datetime('deleted_at')->nullable()->after('remember_token');
         });
     }
     
@@ -39,6 +40,7 @@ class AddCamposToUsersTable extends Migration
             $table->dropColumn('nickname');
             $table->dropColumn('direccion');
             $table->dropColumn('fecha_nacimiento');
+            $table->dropColumn('deleted_at');
         });
     }
 }
