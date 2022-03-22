@@ -263,7 +263,7 @@ class UserController extends Controller
 
         // return redirect('User/listado');
     }
-
+    //CLIENTES
     public function listadogerente(Request $request){
 
         $usuario = User::where('categoria_id',2)->get();
@@ -273,7 +273,7 @@ class UserController extends Controller
 
     public function guardagerente(Request $request){
 
-        $gerente_id = $request->input('categoria_id');
+        $gerente_id = $request->input('gerente_id');
 
         if($gerente_id == 0 ){
             $usuario = new User();
@@ -290,6 +290,48 @@ class UserController extends Controller
         $usuario->pais           = $request->pais;
         $usuario->save();
         return redirect('Categoria/gerente');
+    }
+
+    public function eliminaG(Request $request, $usuario_id){
+
+        User::destroy($usuario_id);
+        
+        return redirect('Categoria/gerente');
+    }
+    //Clientes
+    public function listadocliente(Request $request){
+
+        $usuario = User::where('categoria_id',4)->get();
+
+        return view('categoria.cliente')->with(compact('usuario'));
+    }
+
+    public function guardacliente(Request $request){
+
+        $cliente_id = $request->input('cliente_id');
+
+        if($cliente_id == 0 ){
+            $usuario = new User();
+        }else{
+            $usuario = User::find($cliente_id);
+        }
+        $usuario->categoria_id     = 4;
+        $usuario->name             = $request->name;
+        $usuario->email            = $request->email;
+        $usuario->password         = Hash::make($request->password);
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->direccion        = $request->direccion;
+        $usuario->telefono         = $request->telefono;
+        $usuario->nickname         = $request->nickname;
+        $usuario->save();
+        return redirect('Categoria/cliente');
+    }
+
+    public function eliminaC(Request $request, $usuario_id){
+
+        User::destroy($usuario_id);
+        
+        return redirect('Categoria/cliente');
     }
 
 }

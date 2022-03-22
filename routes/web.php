@@ -61,6 +61,11 @@ Route::get('Categoria/elimina/{categoria_id}', 'CategoriaController@elimina');
 //CATEGORIA GERENTES
 Route::get('Categoria/gerente', 'UserController@listadogerente');
 Route::post('Categoria/guardagerente', 'UserController@guardagerente');
+Route::get('Categoria/eliminaG/{gerente_id}', 'UserController@eliminaG');
+//CATEGORIA CLIENTES
+Route::get('Categoria/cliente', 'UserController@listadocliente');
+Route::post('Categoria/guardacliente', 'UserController@guardacliente');
+Route::get('Categoria/eliminaC/{cliente_id}', 'UserController@eliminaC');
 
 // Route::post('User/ajaxListado', 'UserController@ajaxlistado');
 // Route::get('User/nuevo', 'UserController@nuevo');

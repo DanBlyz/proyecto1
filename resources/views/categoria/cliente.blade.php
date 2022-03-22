@@ -10,21 +10,21 @@
 @section('content')
 
     <!-- Modal-->
-    <div class="modal fade" id="nuevoGerente" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal fade" id="nuevoCliente" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">FORMULARIO DE GERENTE</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">FORMULARIO DE CLIENTE</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('Categoria/guardagerente') }}" method="POST" id="formulario-gerente">
+                    <form action="{{ url('Categoria/guardacliente') }}" method="POST" id="formulario-cliente">
                         @csrf
                         <div class="row">
-							{{-- Aqui guardamos el id_gerente --}}
-							<input type="hidden" name="gerente_id" id="gerente_id" value="0">
+							{{-- Aqui guardamos el id_cliente --}}
+							<input type="hidden" name="cliente_id" id="cliente_id" value="0">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nombre
@@ -67,9 +67,9 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Pais
+                                    <label for="exampleInputPassword1">Nickname
                                     <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="pais" name="pais" required />
+                                    <input type="text" class="form-control" id="nickname" name="nickname" required />
                                 </div>
                             </div>
                         </div>
@@ -102,14 +102,14 @@
 	<div class="card card-custom gutter-b">
 		<div class="card-header flex-wrap py-3">
 			<div class="card-title">
-				<h3 class="card-label">Gerentes
+				<h3 class="card-label">Clientes
 				</h3>
 			</div>
 			<div class="card-toolbar">
 				<!--begin::Button-->
                 <button class="btn btn-primary font-weight-bolder" onclick="nuevo()">
                     <i class="fa fa-plus-square"></i>
-                    Nuevo Gerente
+                    Nuevo Cliente
                 </button>
 				<!--end::Button-->
 			</div>
@@ -124,7 +124,7 @@
 							<th>Email</th>
 							<th>Direccion</th>
 							<th>Telefono</th>
-							<th>Pais</th>
+							<th>Nickname</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
@@ -135,9 +135,9 @@
 								<td>{{ $user->email }}</td>
 								<td>{{ $user->direccion }}</td>
 								<td>{{ $user->telefono }}</td>
-								<td>{{ $user->pais }}</td>
+								<td>{{ $user->nickname }}</td>
 								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->fecha_nacimiento }}', '{{ $user->telefono }}', '{{ $user->pais }}', '{{ $user->direccion }}', '{{ $user->password }}' )">
+									<button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->fecha_nacimiento }}', '{{ $user->telefono }}', '{{ $user->nickname }}', '{{ $user->direccion }}', '{{ $user->password }}' )">
 										<i class="flaticon2-edit"></i>
 									</button>
 									<button type="button" class="btn btn-sm btn-icon btn-danger" onclick="elimina('{{ $user->id }}', '{{ $user->name }}')">
@@ -146,7 +146,7 @@
 								</td>
 							</tr>
 						@empty
-							<h3 class="text-danger">NO EXISTEN GERENTES</h3>
+							<h3 class="text-danger">NO EXISTEN CLIENTES</h3>
 						@endforelse
 					</tbody>
 					<tbody>
@@ -217,43 +217,43 @@
 		});
 
         function nuevo(){
-            $("#gerente_id").val(0);
+            $("#cliente_id").val(0);
             $("#name").val("");
             $("#email").val("");
             $("#fecha_nacimiento").val("");
             $("#telefono").val("");
-            $("#pais").val("");
+            $("#nickname").val("");
             $("#direccion").val("");
             $("#password").val("");
 
-            $('#nuevoGerente').modal('show');
+            $('#nuevoCliente').modal('show');
         }
 
         function crear(){
             // verificamos que el formulario este correcto
-    		if($("#formulario-gerente")[0].checkValidity()){
+    		if($("#formulario-cliente")[0].checkValidity()){
 				// enviamos el formulario
-    			$("#formulario-gerente").submit();
+    			$("#formulario-cliente").submit();
 				// mostramos la alerta
 				Swal.fire("Excelente!", "Registro Guardado!", "success");
     		}else{
 				// de lo contrario mostramos los errores
 				// del formulario
-    			$("#formulario-gerente")[0].reportValidity()
+    			$("#formulario-cliente")[0].reportValidity()
     		}
         }
 
-        function edita(id, name, email, fecha_nacimiento, telefono, pais, direccion, password){
-            $("#gerente_id").val(id);
+        function edita(id, name, email, fecha_nacimiento, telefono, nickname, direccion, password){
+            $("#cliente_id").val(id);
             $("#name").val(name);
             $("#email").val(email);
             $("#fecha_nacimiento").val(fecha_nacimiento);
             $("#telefono").val(telefono);
-            $("#pais").val(pais);
+            $("#nickname").val(nickname);
             $("#direccion").val(direccion);
             $("#password").val(password);
 
-            $('#nuevoGerente').modal('show');
+            $('#nuevoCliente').modal('show');
         }
 
         function elimina(id , name){
@@ -270,7 +270,7 @@
 				// si pulsa boton si
                 if (result.value) {
 
-                    window.location.href = "{{ url('Categoria/eliminaG') }}/"+id;
+                    window.location.href = "{{ url('Categoria/eliminaC') }}/"+id;
 
                     Swal.fire(
                         "Borrado!",

@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                     <h3>&nbsp;</h3>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="radio-inline">
@@ -61,7 +61,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
             
                                     <div class="row">
                                         <div class="col-md-12">
