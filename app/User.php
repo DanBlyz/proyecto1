@@ -52,14 +52,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function sector()
-    {
-        return $this->belongsTo('App\Sector', 'sector_id');
-    }
+    // public function sector()
+    // {
+    //     return $this->belongsTo('App\Sector', 'sector_id');
+    // }
 
-    public function perfil()
+    // public function perfil()
+    // {
+    //     return $this->belongsTo('App\Perfil', 'perfil_id');
+    // }
+
+    public function categorias()
     {
-        return $this->belongsTo('App\Perfil', 'perfil_id');
+        return $this->belongsTo('App\Categoria', 'categoria_id');
     }
 
 }

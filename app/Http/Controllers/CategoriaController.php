@@ -38,4 +38,9 @@ class CategoriaController extends Controller
         
         return redirect('Categoria/listado');
     }
+
+    //FORMULARIOS
+    public function formG(){
+        return view('categoria.formG');
+    }
 }

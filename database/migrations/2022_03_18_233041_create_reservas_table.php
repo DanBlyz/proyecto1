@@ -21,6 +21,7 @@ class CreateReservasTable extends Migration
             $table->foreign('restaurant_id')->references('id')->on('restaurantes'); //llave foreana
             $table->date('fecha')->nullable();
             $table->string('hora')->nullable();
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -29,6 +29,8 @@ class CreateRestaurantesTable extends Migration
             $table->date('fecha_inicio')->nullable();
             $table->string('direccion')->nullable();
             $table->string('ubicacion')->nullable();
+            
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

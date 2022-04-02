@@ -67,6 +67,22 @@ Route::get('Categoria/cliente', 'UserController@listadocliente');
 Route::post('Categoria/guardacliente', 'UserController@guardacliente');
 Route::get('Categoria/eliminaC/{cliente_id}', 'UserController@eliminaC');
 
+//REGISTROS DEL GERENTE
+Route::get('Categoria/formG', 'CategoriaController@formG');
+Route::post('Categoria/guardaG', 'UserController@guardaG');
+//GERENTE CON RESTAURANTES
+Route::get('Categoria/restaurantesG', 'RestaurantController@listadoG');
+Route::post('Categoria/guardaRes', 'RestaurantController@guardaRes');
+Route::get('Categoria/eliminaRes/{res_id}', 'RestaurantController@eliminaRes');
+//GERENTES CON RESTAURNT Y MENU
+Route::get('Categoria/menuP/{res_id}', 'MenuController@listadoM');
+Route::post('Categoria/guardaMenu', 'MenuController@guardaMenu');
+Route::get('Categoria/eliminaMenu/{menu_id}', 'MenuController@eliminaMenu');
+
+Route::get('Categoria/platillo/{menu_id}', 'PlatilloController@listadoP');
+Route::post('Categoria/guardaP', 'PlatilloController@guardaP');
+Route::get('Categoria/eliminaP/{platillo_id}', 'PlatilloController@eliminaP');
+
 // Route::post('User/ajaxListado', 'UserController@ajaxlistado');
 // Route::get('User/nuevo', 'UserController@nuevo');
 // Route::post('User/ajaxDistrito', 'UserController@ajaxDistrito');

@@ -123,9 +123,9 @@
                         <div class="col-md-12">
                             <div class="alert alert-dark mb-5 p-5" role="alert">
                                 <h4 class="alert-heading">AVISOS!</h4>
-                                <p>Hoy habra una reunion, en la que se tratara de las modificaciones de los usuarios.</p>
+                                <p>Mira todo lo que tenemos para ofrecrte, variedad de resturantes para que no salgas de casa.</p>
                                 <div class="border-bottom border-white opacity-20 mb-5"></div>
-                                <p class="mb-0">6 de la tarde en oficinas.</p>
+                                <p class="mb-0">Primero inicia secion para ver los restaurantes.</p>
                             </div>
 
                         </div>

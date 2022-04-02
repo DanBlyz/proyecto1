@@ -22,6 +22,7 @@ class CreateCalificacionesTable extends Migration
             $table->string('comenta')->nullable(); //llave foreana
             $table->integer('like')->nullable();
             $table->integer('nolike')->nullable();
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

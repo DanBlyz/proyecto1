@@ -19,6 +19,7 @@ class CreateTrabajosTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('users'); //llave foreana
             $table->unsignedBigInteger('restaurant_id')->nullable(); //llave foreana
             $table->foreign('restaurant_id')->references('id')->on('restaurantes'); //llave foreana
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

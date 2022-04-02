@@ -23,6 +23,7 @@ class CreatePedidosTable extends Migration
             $table->foreign('menu_id')->references('id')->on('menus'); //llave foreana
             $table->unsignedBigInteger('platillo_id')->nullable(); //llave foreana
             $table->foreign('platillo_id')->references('id')->on('platillos'); //llave foreana
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

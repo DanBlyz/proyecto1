@@ -18,7 +18,7 @@ class UserController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
-        $this->middleware('auth', ['except' => ['verificaUser', 'logout', 'addUser', 'registro', 'validaEmail']]);
+        $this->middleware('auth', ['except' => ['verificaUser', 'logout', 'addUser', 'registro', 'validaEmail', 'guardaG']]);
 
     }
 
@@ -334,4 +334,21 @@ class UserController extends Controller
         return redirect('Categoria/cliente');
     }
 
+    //ACCIONES PARA SOLO LOS GERENTES
+    public function guardaG(Request $request){
+
+        // dd($request->all());
+        
+        $usuario = new User();
+        $usuario->categoria_id     = 2;
+        $usuario->name             = $request->name;
+        $usuario->email            = $request->email;
+        $usuario->password         = Hash::make($request->password);
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->direccion        = $request->direccion;
+        $usuario->telefono         = $request->telefono;
+        $usuario->pais             = $request->pais;
+        $usuario->save();
+        return redirect('/login');
+    }
 }

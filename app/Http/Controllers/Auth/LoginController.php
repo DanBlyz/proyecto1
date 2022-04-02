@@ -42,14 +42,26 @@ class LoginController extends Controller
 
     public function redirectPath()
     {   
+        // dd(Auth::user()->categoria_id);
+        // dd(session()->get('user'));
         // dd(auth()->user()->email);
         // $perfil = User::where('email', auth()->user()->email)->first();
         // dd(Auth::user()->perfil);
 
-        if(Auth::user()->perfil == 'Administrador'){
+        if(Auth::user()->categoria_id == 3){
+
             return 'User/listado';
-        }else{
-            return '/';
+
+        }else if(Auth::user()->categoria_id == 2){
+
+            return 'Categoria/restaurantesG';
+
         }
+
+        // if(Auth::user()->perfil == 'Administrador'){
+        //     return 'User/listado';
+        // }else{
+        //     return '/';
+        // }
     }
 }

@@ -19,8 +19,10 @@ class CreatePlatillosTable extends Migration
             $table->foreign('menu_id')->references('id')->on('menus'); //llave foreana
             $table->string('nombre')->nullable();
             $table->string('tipo')->nullable();
+            $table->string('logotipo')->nullable();
             $table->string('ingredientes')->nullable();
             $table->string('precio')->nullable();
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

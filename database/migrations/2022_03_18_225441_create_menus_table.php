@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->unsignedBigInteger('restaurant_id')->nullable(); //llave foreana
             $table->foreign('restaurant_id')->references('id')->on('restaurantes'); //llave foreana
             $table->string('tipo')->nullable(); //
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }
