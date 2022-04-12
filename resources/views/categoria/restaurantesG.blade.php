@@ -68,11 +68,21 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tipo
                                     <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="tipo" name="tipo" required />
+                                    {{-- <input type="text" class="form-control" id="tipo" name="tipo" required /> --}}
+									<select class="form-control" id="tipo" name="tipo" required>
+                                        <option>--Ninguna--</option>
+                                        <option>Variado</option>                                    
+                                        <option>Parrillero</option>                                  
+                                        <option>Bar</option>                                  
+                                        <option>Familiar</option>                                  
+                                        <option>Vegano</option>                                  
+                                        <option>Comida Local</option>										                                  
+                                        <option>Otro</option>										                                  
+                                    </select>
                                 </div>        
                             </div>
                         </div>
-						<div class="row">
+						{{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Descripcion
@@ -80,7 +90,7 @@
                                     <input type="text" class="form-control" id="descripcion" name="descripcion" required />
                                 </div>        
                             </div>
-                        </div>
+                        </div> --}}
 						<div class="row">
 							<div class="col-md-12">
 								<div class="custom-file">
@@ -139,7 +149,7 @@
 						<tr>
 							<th>Nombre</th>
 							<th width="30%" height="35%">Logotipo</th>
-							<th>Descripcion</th>
+							{{-- <th>Descripcion</th> --}}
 							<th>Tipo</th>
 							<th>Hora Apertura</th>
 							<th>Hora Cierre</th>
@@ -154,7 +164,7 @@
 								<td>{{ $res->nombre }}</td>
 								{{-- <td>{{ $res->logotipo }}</td> --}}
 								<td> <img src="{{ url( asset("img_publicaciones/$res->logotipo")) }}" alt="Image" width="30%" height="30%"></td>
-								<td>{{ $res->descripcion }}</td>
+								{{-- <td>{{ $res->descripcion }}</td> --}}
 								<td>{{ $res->tipo }}</td>
 								<td>{{ $res->hora_apertura }}</td>
 								<td>{{ $res->hora_cierre }}</td>
@@ -164,7 +174,7 @@
 									<button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
 										<i class="fas fa-book menu-icon"></i>
 									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $res->id }}', '{{ $res->nombre }}', '{{ $res->logotipo }}', '{{ $res->descripcion }}', '{{ $res->tipo }}', '{{ $res->hora_apertura }}', '{{ $res->hora_cierre }}', '{{ $res->direccion }}', '{{ $res->ubicacion }}')">
+									<button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $res->id }}', '{{ $res->nombre }}', '{{ $res->logotipo }}', '{{ $res->tipo }}', '{{ $res->hora_apertura }}', '{{ $res->hora_cierre }}', '{{ $res->direccion }}', '{{ $res->ubicacion }}')">
 										<i class="flaticon2-edit"></i>
 									</button>
 									<button type="button" class="btn btn-sm btn-icon btn-danger" onclick="elimina('{{ $res->id }}', '{{ $res->nombre }}')">
@@ -248,7 +258,8 @@
             $("#restaurant_id").val(0);
             $("#name").val("");
             $("#logotipo").val("");
-            $("#descripcion").val("");
+            // $("#descripcion").val("");
+            $("#tipo").val("--Ninguna--");
             $("#hora_apertura").val("");
             $("#hora_cierre").val("");
             $("#direccion").val("");
@@ -272,11 +283,11 @@
     		}
         }
 
-        function edita(id, nombre, logotipo, descripcion, tipo, hora_apertura, hora_cierre, direccion, ubicacion){
+        function edita(id, nombre, logotipo,tipo, hora_apertura, hora_cierre, direccion, ubicacion){
             $("#restaurant_id").val(id);
             $("#name").val(nombre);
             $("#logotipo").val(logotipo);
-            $("#descripcion").val(descripcion);
+            // $("#descripcion").val(descripcion);
             $("#tipo").val(tipo);
             $("#hora_apertura").val(hora_apertura);
             $("#hora_cierre").val(hora_cierre);

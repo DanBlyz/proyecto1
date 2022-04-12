@@ -15,6 +15,11 @@ class MenuController extends Controller
         return view('categoria.menuP')->with(compact('menu','res_id'));
     }
 
+    public function listadoC(Request $request, $res_id){
+        $menu = Menu::where('restaurant_id',$res_id)->get();
+        return view('categoria.menuC')->with(compact('menu'));
+    }
+
     public function guardaMenu(Request $request){
         $menu_id = $request->input('menu_id');
 

@@ -39,7 +39,7 @@
 					</a>
 				</li>
 				<li class="menu-item" aria-haspopup="true">
-					<a href="{{ url('User/listado') }}" class="menu-link">
+					<a href="{{ url('Categoria/formC') }}" class="menu-link">
 						<i class="far fa-edit menu-icon"></i>
 						<span class="menu-text">Registro de Usuario</span>
 					</a>
@@ -109,6 +109,15 @@
 										<span class="menu-text">Clientes</span>
 									</a>
 								</li>
+
+								<li class="menu-item" aria-haspopup="true">
+									<a href="{{ url('Categoria/restaurantesA')}}" class="menu-link">
+										<i class="menu-bullet menu-bullet-dot">
+											<span></span>
+										</i>
+										<span class="menu-text">Restaurantes</span>
+									</a>
+								</li>
 								
 							</ul>
 						</div>
@@ -124,6 +133,19 @@
 					<a href="{{ url('Categoria/restaurantesG')}}" class="menu-link">
 						<i class="fas fa-utensils menu-icon"></i>
 						<span class="menu-text">Restaurantes</span>
+					</a>
+				</li>
+				@endif
+				
+			@endif
+
+			@if (Auth::user())
+
+				@if (Auth::user()->categoria_id == 4)
+				<li class="menu-item" aria-haspopup="true">
+					<a href="{{ url('Social/inicio')}}" class="menu-link">
+						<i class="fas fa-user-circle menu-icon"></i>
+						<span class="menu-text">Ver tiendas</span>
 					</a>
 				</li>
 				@endif

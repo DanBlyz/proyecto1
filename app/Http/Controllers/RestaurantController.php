@@ -16,6 +16,15 @@ class RestaurantController extends Controller
         return view('categoria.restaurantesG')->with(compact('restaurant'));
     }
 
+    public function listadoA(Request $request){
+        $restaurant = Restaurant::all();
+        return view('categoria.restaurantesA')->with(compact('restaurant'));
+    }
+
+    public function listadoC(Request $request){
+        $restaurant = Restaurant::where('validacion','si')->get();
+        return view('social.inicio')->with(compact('restaurant'));
+    }
     public function guardaRes(Request $request){
 
         // dd($request->file('archivo'));
@@ -35,7 +44,8 @@ class RestaurantController extends Controller
         $restaurant->hora_cierre    = $request->hora_cierre;
         $restaurant->direccion      = $request->direccion;
         $restaurant->ubicacion      = $request->ubicacion;
-        $restaurant->descripcion    = $request->descripcion;
+        // $restaurant->descripcion    = $request->descripcion;
+        $restaurant->validacion    = 'no';
           
         
         if($request->has('archivo'))
@@ -53,6 +63,46 @@ class RestaurantController extends Controller
 
 
         return redirect('Categoria/restaurantesG');
+    }
+
+    public function guardaResA(Request $request){
+
+        // dd($request->file('archivo'));
+        // dd($request->all());
+
+        $res_id = $request->input('restaurant_id');
+
+        if($res_id == 0 ){
+            $restaurant = new Restaurant();
+        }else{
+            $restaurant = Restaurant::find($res_id);
+        }
+        $restaurant->gerente_id     = Auth::user()->id;
+        $restaurant->nombre         = $request->name;
+        $restaurant->tipo           = $request->tipo;
+        $restaurant->hora_apertura  = $request->hora_apertura;
+        $restaurant->hora_cierre    = $request->hora_cierre;
+        $restaurant->direccion      = $request->direccion;
+        $restaurant->ubicacion      = $request->ubicacion;
+        // $restaurant->descripcion    = $request->descripcion;
+        $restaurant->validacion    = $request->validacion;
+          
+        
+        if($request->has('archivo'))
+        {
+            $archivo = $request->file('archivo');
+            $direccion = 'img_publicaciones/'; // upload path
+            $nombreArchivo = date('YmdHis'). "." . $archivo->getClientOriginalExtension();
+            $archivo->move($direccion, $nombreArchivo);
+
+            $restaurant->logotipo = $nombreArchivo;
+
+        }
+
+        $restaurant->save();
+
+
+        return redirect('Categoria/restaurantesA');
     }
 
     public function eliminaRes(Request $request, $res_id){

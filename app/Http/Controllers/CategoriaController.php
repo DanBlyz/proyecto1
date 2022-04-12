@@ -43,4 +43,8 @@ class CategoriaController extends Controller
     public function formG(){
         return view('categoria.formG');
     }
+
+    public function formC(){
+        return view('categoria.formC');
+    }
 }

@@ -12,6 +12,10 @@ class PlatilloController extends Controller
         $platillo = Platillo::where('menu_id',$menu_id)->get();
         return view('categoria.platillo')->with(compact('platillo', 'menu_id'));
     }
+    public function listadoC(Request $request, $menu_id){
+        $platillo = Platillo::where('menu_id',$menu_id)->get();
+        return view('categoria.platilloC')->with(compact('platillo'));
+    }
 
     public function guardaP(Request $request){
 

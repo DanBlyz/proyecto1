@@ -52,9 +52,15 @@ class LoginController extends Controller
 
             return 'User/listado';
 
-        }else if(Auth::user()->categoria_id == 2){
+        }
+        if(Auth::user()->categoria_id == 2){
 
             return 'Categoria/restaurantesG';
+
+        }
+        if(Auth::user()->categoria_id == 4){
+
+            return 'Social/inicio';
 
         }
 

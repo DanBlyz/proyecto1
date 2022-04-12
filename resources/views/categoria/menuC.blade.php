@@ -167,7 +167,7 @@
                     @auth
                         
                         {{-- <a onclick="abre_modal()"> --}}
-                        @forelse ($restaurant as $res)
+                        @forelse ($menu as $men)
                             <div class="col-md-12">
                                 <div class="card card-custom gutter-b">
                                     <!--begin::Body-->
@@ -176,17 +176,19 @@
                                             <!--begin::Top-->
                                                 <div class="d-flex align-items-center">
                                                     <!--begin::Symbol-->
-                                                    <div class="symbol symbol-40 symbol-light-success mr-10">
+                                                    {{-- <div class="symbol symbol-40 symbol-light-success mr-10">
                                                         <span class="symbol">
                                                             {{-- <img src="assets/media/svg/avatars/007-boy-2.svg" class="h-75 align-self-end" alt="" /> --}}
-                                                            <img src="{{ url( asset("img_publicaciones/$res->logotipo")) }}" alt="Image" width="400%" height="30%">
+                                                            {{-- <img src="{{ url( asset("img_publicaciones/$res->logotipo")) }}" alt="Image" width="400%" height="30%">
                                                         </span>
-                                                    </div>
+                                                    </div>  --}}
                                                     <!--end::Symbol-->
                                                     <!--begin::Description-->
-                                                    <h2 class="alert-heading mr-30">{{ $res->nombre }}</h2>
+                                                    <div class="symbol symbol-40 symbol-light-success mr-10">
+                                                        <h2 class="alert-heading mr-30">{{ $men->tipo }}</h2>
+                                                    </div>
                                                     <!--end::Description-->
-                                                    <button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
+                                                    <button type="button" class="btn btn-sm btn-icon btn-success" onclick="platillo('{{ $men->id }}')">
                                                         <i class="fas fa-angle-double-right"></i>
                                                     </button>
                                                 </div>
@@ -262,8 +264,8 @@
     // $(function() {
     //     $("#publicacionesAjax").load("{{ url('Social/ajaxPublicaciones') }}");
     // });
-    function menu(id) {
-			window.location.href = "{{ url('Categoria/menuC') }}/"+id;
+    function platillo(id) {
+			window.location.href = "{{ url('Categoria/platilloC') }}/"+id;
 		}
 
     function showMyImage(fileInput, numero) {

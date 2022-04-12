@@ -21,17 +21,17 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">NUEVO GERENTE</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVO CLIENTE</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('Categoria/guardaG') }}" method="POST" id="formulario-gerente">
+                    <form action="{{ url('Categoria/guardaC') }}" method="POST" id="formulario-cliente">
                         @csrf
                         <div class="row">
-							{{-- Aqui guardamos el id_gerente --}}
-							<input type="hidden" name="gerente_id" id="gerente_id" value="0">
+							{{-- Aqui guardamos el id_cliente --}}
+							<input type="hidden" name="cliente_id" id="cliente_id" value="0">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nombre
@@ -48,9 +48,9 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Fecha Nacimiento
+                                    <label for="exampleInputPassword1">NickName
                                         <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required />
+                                    <input type="text" class="form-control" id="nickname" name="nickname" required />
                                 </div>
                             </div>
                         </div>
@@ -74,20 +74,9 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Ciudad
-                                    <span class="text-danger">*</span></label>
-                                    {{-- <input type="text" class="form-control" id="pais" name="pais" required /> --}}
-                                    <select class="form-control" id="pais" name="pais" required>
-                                        <option>--Ninguna--</option>
-                                        <option>La Paz</option>                                    
-                                        <option>Cochabamba</option>                                        
-                                        <option>Santa Cruz</option>                                    
-                                        <option>Beni</option>                                    
-                                        <option>Pando</option>                                    
-                                        <option>Oruro</option>                                    
-                                        <option>Tarija</option>                                    
-                                        <option>Potosi</option>                                    
-                                    </select>
+                                    <label for="exampleInputPassword1">Fecha Nacimiento
+                                        <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required />
                                 </div>
                             </div>
                         </div>
@@ -129,43 +118,43 @@
 		});
 
         function nuevo(){
-            $("#gerente_id").val(0);
+            $("#cliente_id").val(0);
             $("#name").val("");
             $("#email").val("");
             $("#fecha_nacimiento").val("");
             $("#telefono").val("");
-            $("#pais").val("");
+            $("#nickname").val("");
             $("#direccion").val("");
             $("#password").val("");
 
-            $('#nuevoGerente').modal('show');
+            $('#nuevoCliente').modal('show');
         }
 
         function crear(){
             // verificamos que el formulario este correcto
-    		if($("#formulario-gerente")[0].checkValidity()){
+    		if($("#formulario-cliente")[0].checkValidity()){
 				// enviamos el formulario
-    			$("#formulario-gerente").submit();
+    			$("#formulario-cliente").submit();
 				// mostramos la alerta
 				Swal.fire("Excelente!", "Registro Guardado!", "success");
     		}else{
 				// de lo contrario mostramos los errores
 				// del formulario
-    			$("#formulario-gerente")[0].reportValidity()
+    			$("#formulario-cliente")[0].reportValidity()
     		}
         }
 
-        function edita(id, name, email, fecha_nacimiento, telefono, pais, direccion, password){
-            $("#gerente_id").val(id);
+        function edita(id, name, email, fecha_nacimiento, telefono, nickname, direccion, password){
+            $("#cliente_id").val(id);
             $("#name").val(name);
             $("#email").val(email);
             $("#fecha_nacimiento").val(fecha_nacimiento);
             $("#telefono").val(telefono);
-            $("#pais").val(pais);
+            $("#nickname").val(nickname);
             $("#direccion").val(direccion);
             $("#password").val(password);
 
-            $('#nuevoGerente').modal('show');
+            $('#nuevoCliente').modal('show');
         }
 
         function elimina(id , name){

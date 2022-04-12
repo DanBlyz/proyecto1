@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
     return view('home');
 });*/
 
-Route::get('/', 'SocialController@inicio');
+Route::get('/', 'RestaurantController@listadoC');
 // Route::get('/', 'home');
 
 Auth::routes();
@@ -37,10 +37,10 @@ Route::post('User/validaEmail', 'UserController@validaEmail');
 Route::get('/home', 'PanelController@inicio');
 Route::get('Panel/inicio', 'PanelController@inicio');
 
-// RED SOCIAL
-Route::get('Social/inicio', 'SocialController@inicio');
-Route::post('Social/guarda', 'SocialController@guarda');
-Route::get('Social/ajaxPublicaciones', 'SocialController@ajaxPublicaciones');
+//RED SOCIAL
+// Route::get('Social/inicio', 'SocialController@inicio');
+// Route::post('Social/guarda', 'SocialController@guarda');
+// Route::get('Social/ajaxPublicaciones', 'SocialController@ajaxPublicaciones');
 
 // RED SOCIAL
 Route::get('Social/muromobil', 'SocialController@muromobil');
@@ -74,6 +74,9 @@ Route::post('Categoria/guardaG', 'UserController@guardaG');
 Route::get('Categoria/restaurantesG', 'RestaurantController@listadoG');
 Route::post('Categoria/guardaRes', 'RestaurantController@guardaRes');
 Route::get('Categoria/eliminaRes/{res_id}', 'RestaurantController@eliminaRes');
+//ADMIN CON RESTAURANT
+Route::get('Categoria/restaurantesA', 'RestaurantController@listadoA');
+Route::post('Categoria/guardaResA', 'RestaurantController@guardaResA');
 //GERENTES CON RESTAURNT Y MENU
 Route::get('Categoria/menuP/{res_id}', 'MenuController@listadoM');
 Route::post('Categoria/guardaMenu', 'MenuController@guardaMenu');
@@ -82,6 +85,15 @@ Route::get('Categoria/eliminaMenu/{menu_id}', 'MenuController@eliminaMenu');
 Route::get('Categoria/platillo/{menu_id}', 'PlatilloController@listadoP');
 Route::post('Categoria/guardaP', 'PlatilloController@guardaP');
 Route::get('Categoria/eliminaP/{platillo_id}', 'PlatilloController@eliminaP');
+
+//REGISTROS DEL CLIENTE
+Route::get('Categoria/formC', 'CategoriaController@formC');
+Route::post('Categoria/guardaC', 'UserController@guardaC');
+
+//CLIENTE CON RESTAURANTES
+Route::get('Social/inicio', 'RestaurantController@listadoC');
+Route::get('Categoria/menuC/{res_id}', 'MenuController@listadoC');
+Route::get('Categoria/platilloC/{menu_id}', 'PlatilloController@listadoC');
 
 // Route::post('User/ajaxListado', 'UserController@ajaxlistado');
 // Route::get('User/nuevo', 'UserController@nuevo');

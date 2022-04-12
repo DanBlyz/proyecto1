@@ -10,60 +10,87 @@
 @section('content')
 
     <!-- Modal-->
-    <div class="modal fade" id="nuevoPlatillo" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal fade" id="nuevoRestaurant" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">FORMULARIO DE PLATILLO</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">FORMULARIO DE RESTAURANT</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('Categoria/guardaP') }}" method="POST" id="formulario-platillo" enctype="multipart/form-data">{{-- para enviar archivos --}}
+                    <form action="{{ url('Categoria/guardaResA') }}" method="POST" id="formulario-restaurant" enctype="multipart/form-data">{{-- para enviar archivos --}}
                         @csrf
                         <div class="row">
-							{{-- Aqui guardamos el id_platillo --}}
-							<input type="hidden" name="platillo_id" id="platillo_id" value="0">
-							<input type="hidden" name="menu_id" id="menu_id" value="{{ $menu_id }}">
-                            <div class="col-md-6">
+							{{-- Aqui guardamos el id_restaurant --}}
+							<input type="hidden" name="restaurant_id" id="restaurant_id" value="0">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nombre
                                     <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name" name="name" required />
                                 </div>        
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hora Apertura
+                                    <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="hora_apertura" name="hora_apertura" required />
+                                </div>        
+                            </div>
+							<div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hora Cierre
+                                    <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="hora_cierre" name="hora_cierre" required />
+                                </div>        
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Direccion
+                                    <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="direccion" name="direccion" required />
+                                </div>        
+                            </div>
+                            
+							<div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Validacion
+                                    <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="validacion" name="validacion" required />
+                                </div>        
+                            </div>
+							<div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tipo
                                     <span class="text-danger">*</span></label>
                                     {{-- <input type="text" class="form-control" id="tipo" name="tipo" required /> --}}
 									<select class="form-control" id="tipo" name="tipo" required>
                                         <option>--Ninguna--</option>
-                                        <option>Platillo</option>                                    
-                                        <option>Postre</option>                                  
-                                        <option>Bebida</option>                                  
+                                        <option>Variado</option>                                    
+                                        <option>Parrillero</option>                                  
+                                        <option>Bar</option>                                  
+                                        <option>Familiar</option>                                  
+                                        <option>Vegano</option>                                  
+                                        <option>Comida Local</option>										                                  
+                                        <option>Otro</option>										                                  
                                     </select>
                                 </div>        
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Precio
-                                    <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="precio" name="precio" required />
-                                </div>        
-                            </div>
                         </div>
-
-						<div class="row">
+						{{-- <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Ingredientes
+                                    <label for="exampleInputPassword1">Descripcion
                                     <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="ingredientes" name="ingredientes" required />
+                                    <input type="text" class="form-control" id="descripcion" name="descripcion" required />
                                 </div>        
                             </div>
-                        </div>
+                        </div> --}}
 						<div class="row">
 							<div class="col-md-12">
 								<div class="custom-file">
@@ -102,14 +129,14 @@
 	<div class="card card-custom gutter-b">
 		<div class="card-header flex-wrap py-3">
 			<div class="card-title">
-				<h3 class="card-label">Platillos
+				<h3 class="card-label">Restaurantes
 				</h3>
 			</div>
 			<div class="card-toolbar">
 				<!--begin::Button-->
                 <button class="btn btn-primary font-weight-bolder" onclick="nuevo()">
                     <i class="fa fa-plus-square"></i>
-                    Nuevo Platillo
+                    Nuevo Restaurant
                 </button>
 				<!--end::Button-->
 			</div>
@@ -122,32 +149,41 @@
 						<tr>
 							<th>Nombre</th>
 							<th width="30%" height="35%">Logotipo</th>
+							{{-- <th>Descripcion</th> --}}
 							<th>Tipo</th>
-							<th>ingredientes</th>
-							<th>Precio</th>
+							<th>Hora Apertura</th>
+							<th>Hora Cierre</th>
+							<th>Direccion</th>
+							<th>Validacion</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						@forelse ($platillo as $pla)
+						@forelse ($restaurant as $res)
 							<tr>
-								<td>{{ $pla->nombre }}</td>
-								{{-- <td>{{ $pla->logotipo }}</td> --}}
-								<td> <img src="{{ url( asset("img_publicaciones/$pla->logotipo")) }}" alt="Image" width="30%" height="30%"></td>
-								<td>{{ $pla->tipo }}</td>
-								<td>{{ $pla->ingredientes }}</td>
-								<td>{{ $pla->precio }}</td>
+								<td>{{ $res->nombre }}</td>
+								{{-- <td>{{ $res->logotipo }}</td> --}}
+								<td> <img src="{{ url( asset("img_publicaciones/$res->logotipo")) }}" alt="Image" width="30%" height="30%"></td>
+								{{-- <td>{{ $res->descripcion }}</td> --}}
+								<td>{{ $res->tipo }}</td>
+								<td>{{ $res->hora_apertura }}</td>
+								<td>{{ $res->hora_cierre }}</td>
+								<td>{{ $res->direccion }}</td>
+								<td>{{ $res->validacion }}</td>
 								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $pla->id }}', '{{ $pla->nombre }}', '{{ $pla->logotipo }}','{{ $pla->tipo }}', '{{ $pla->ingredientes }}', '{{ $pla->precio }}')">
+									<button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
+										<i class="fas fa-book menu-icon"></i>
+									</button>
+									<button type="button" class="btn btn-sm btn-icon btn-warning" onclick="edita('{{ $res->id }}', '{{ $res->nombre }}', '{{ $res->logotipo }}', '{{ $res->tipo }}', '{{ $res->hora_apertura }}', '{{ $res->hora_cierre }}', '{{ $res->direccion }}', '{{ $res->validacion }}')">
 										<i class="flaticon2-edit"></i>
 									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-danger" onclick="elimina('{{ $pla->id }}', '{{ $pla->nombre }}')">
+									<button type="button" class="btn btn-sm btn-icon btn-danger" onclick="elimina('{{ $res->id }}', '{{ $res->nombre }}')">
 										<i class="flaticon2-cross"></i>
 									</button>
 								</td>
 							</tr>
 						@empty
-							<h3 class="text-danger">NO EXISTEN PLATILLOS</h3>
+							<h3 class="text-danger">NO EXISTEN RESTAURANTES</h3>
 						@endforelse
 					</tbody>
 					<tbody>
@@ -219,39 +255,44 @@
 
         function nuevo(){
 
-            $("#platillo_id").val(0);
+            $("#restaurant_id").val(0);
             $("#name").val("");
-            $("#archivo").val("");
-            $("#tipo").val("");
-            $("#ingredientes").val("");
-            $("#precio").val("");
+            $("#logotipo").val("");
+            $("#descripcion").val("");
+            $("#hora_apertura").val("");
+            $("#hora_cierre").val("");
+            $("#direccion").val("");
+            $("#validacion").val("no");
+			$("#password").val("");
 
-            $('#nuevoPlatillo').modal('show');
+            $('#nuevoRestaurant').modal('show');
         }
 
         function crear(){
             // verificamos que el formulario este correcto
-    		if($("#formulario-platillo")[0].checkValidity()){
+    		if($("#formulario-restaurant")[0].checkValidity()){
 				// enviamos el formulario
-    			$("#formulario-platillo").submit();
+    			$("#formulario-restaurant").submit();
 				// mostramos la alerta
 				Swal.fire("Excelente!", "Registro Guardado!", "success");
     		}else{
 				// de lo contrario mostramos los errores
 				// del formulario
-    			$("#formulario-platillo")[0].reportValidity()
+    			$("#formulario-restaurant")[0].reportValidity()
     		}
         }
 
-        function edita(id, nombre, logotipo, tipo, ingredientes, precio){
-            $("#platillo_id").val(id);
+        function edita(id, nombre, logotipo, tipo, hora_apertura, hora_cierre, direccion, validacion){
+            $("#restaurant_id").val(id);
             $("#name").val(nombre);
-            $("#archivo").val(logotipo);
+            $("#logotipo").val(logotipo);
             $("#tipo").val(tipo);
-            $("#ingredientes").val(ingredientes);
-            $("#precio").val(precio);
+            $("#hora_apertura").val(hora_apertura);
+            $("#hora_cierre").val(hora_cierre);
+            $("#direccion").val(direccion);
+            $("#validacion").val(validacion);
 
-            $('#nuevoPlatillo').modal('show');
+            $('#nuevoRestaurant').modal('show');
         }
 
         function elimina(id , name){
@@ -268,7 +309,7 @@
 				// si pulsa boton si
                 if (result.value) {
 
-                    window.location.href = "{{ url('Categoria/eliminap') }}/"+id;
+                    window.location.href = "{{ url('Categoria/eliminaRes') }}/"+id;
 
                     Swal.fire(
                         "Borrado!",
