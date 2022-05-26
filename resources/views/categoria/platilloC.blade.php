@@ -75,28 +75,14 @@
                                                             <h4>{{ $pla->precio }} Bs</h4>
                                                         </div>
                                                     </div>
-                                                    <!--end::Description-->
-                                                    {{-- <button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
-                                                        <i class="fas fa-angle-double-right"></i>
-                                                    </button> --}}
                                                 </div>
-                                            <!--end::Top-->
-                                            <!--begin::Form-->
-                                            {{-- <form id="kt_forms_widget_2_form" class="pt-10 ql-quil ql-quil-plain"> --}}
-                                                <!--begin::Editor-->
-                                                {{-- <input type="text" class="form-control" placeholder="Cuentanos que estas pensando..." onclick="abre_modal()"> --}}
-                                                <!--end::Editor-->
-                                                {{-- <div class="border-top my-5"></div> --}}
-                                                <!--end::Toolbar-->
-                                            {{-- </form> --}}
-                                            <!--end::Form-->
                                         </div>
                                         
                                     <!--end::Body-->
                                 </div>
                             </div>    
                             @empty
-                            <h3 class="text-danger">NO EXISTEN RESTAURANTES</h3>
+                            <h3 class="text-danger">NO EXISTEN PLATILLOS</h3>
                         @endforelse  
                         {{-- </a>                         --}}
                     @endauth

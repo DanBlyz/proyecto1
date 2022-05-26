@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Calificacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
-    private $res_id;
 
     public function listadoM(Request $request, $res_id){
         $menu = Menu::where('restaurant_id',$res_id)->get();
@@ -17,7 +17,8 @@ class MenuController extends Controller
 
     public function listadoC(Request $request, $res_id){
         $menu = Menu::where('restaurant_id',$res_id)->get();
-        return view('categoria.menuC')->with(compact('menu'));
+        $califica = Calificacion::where('restaurant_id',$res_id)->get();
+        return view('categoria.menuC')->with(compact('menu', 'califica', 'res_id'));
     }
 
     public function guardaMenu(Request $request){
@@ -40,6 +41,20 @@ class MenuController extends Controller
         Menu::destroy($menu_id);
         
         return redirect('Categoria/menuP');
+    }
+
+    public function guardaComent(Request $request){
+
+        $res_id = $request->input('res_id');
+        $califica = new Calificacion();
+        $califica->restaurant_id = $request->input('res_id');
+        $califica->usuario_id    = Auth::user()->id;
+        $califica->comenta       = $request->comenta;
+        $califica->save();
+        
+        $menu = Menu::where('restaurant_id',$res_id)->get();
+        $califica = Calificacion::where('restaurant_id',$res_id)->get();
+        return view('categoria.menuC')->with(compact('menu', 'califica', 'res_id'));
     }
 
     

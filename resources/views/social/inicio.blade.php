@@ -11,124 +11,6 @@
     <div class="container">
         <!--begin::Dashboard-->
         <h3>&nbsp;</h3>
-        {{-- cabeceras --}}
-        
-        {{-- fin cabeceras --}}
-
-        {{-- modal registra publicacion --}}
-        {{-- @auth
-            
-            <div class="modal fade" id="modal-publicacion-articulos" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="staticBackdrop" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-            
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-    
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40 symbol-light-success mr-5">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/avatars/007-boy-2.svg"
-                                                    class="h-75 align-self-end" alt="">
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Description-->
-                                        <h2 class="alert-heading">{{ Auth::user()->name }}</h2>
-                                        <!--end::Description-->
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <form method="POST" action="{{ route('login') }}"> --}}
-                                {{-- <form method="POST" action="{{ url('Social/guarda') }}" enctype="multipart/form-data" id="formulario-publicacion">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-12">
-            
-                                            <div class="d-flex align-items-center">
-                                                <!--begin::Symbol-->
-                                                <div class="symbol symbol-40 symbol-light-success mr-5">
-                                                    <span class="symbol-label">
-                                                        <img src="assets/media/svg/avatars/007-boy-2.svg"
-                                                            class="h-75 align-self-end" alt="">
-                                                    </span>
-                                                </div>
-                                                <!--end::Symbol-->
-                                                <!--begin::Description-->
-                                                <span class="text-muted font-weight-bold font-size-lg">{{ Auth::user()->name }}</span>
-                                                <!--end::Description-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h3>&nbsp;</h3> --}}
-                                    {{-- <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="radio-inline">
-                                                    @foreach ($categorias as $c)
-                                                    <label class="radio">
-                                                        <input type="radio" @if($loop->first) checked="checked" @endif
-                                                        name="categoria_id" value="{{ $c->id }}" />
-                                                        <span></span>
-                                                        {{ $c->nombre }}
-                                                    </label>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-            
-                                    {{-- <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea name="publicacion" class="form-control" rows="3"
-                                                    placeholder="Escribe aqui" required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="archivo" id="customFile_1"
-                                                    onchange="showMyImage(this, 1)" required />
-                                                <label class="custom-file-label" for="customFile">Elegir</label>
-                                            </div>
-                                            {{-- <input type="file" accept="image/*" onchange="loadFile(event)"> --}}
-                                            {{-- <center>
-                                                <img id="thumbnil_1" class="img-fluid" style="margin-top: 10px;" />
-                                            </center>
-                                            <button type="button" class="btn btn-danger mr-2 btn-block" id="btnRimg_1"
-                                                style="display:none;" onclick="mueveImagen(1)">Quitar Imagen
-                                            </button>
-            
-                                            <h3>&nbsp;</h3>
-                                        </div>
-                                    </div>
-            
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-success btn-block" onclick="guarda();">PUBLICAR</button>
-                                        </div>
-            
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-light-dark font-weight-bold btn-block"
-                                                data-dismiss="modal">CERRAR</button>
-                                        </div>
-                                    </div>
-                                </form>  --}}
-                        {{-- </div>
-                    </div>
-                </div>
-            </div>
-
-        @endauth  --}}
-        {{-- end modal registrar --}}
-        
-
-        <!--begin::Row-->
         <div class="row" data-sticky-container="">
 
             {{-- lado izquierdo --}}
@@ -161,61 +43,57 @@
 
             {{-- centro --}}
             <div class="col-md-6">
-
-                {{-- crea publicacion --}}
-                <div class="row" data-sticky-container>
-                    @auth
-                        
-                        {{-- <a onclick="abre_modal()"> --}}
-                        @forelse ($restaurant as $res)
-                            <div class="col-md-12">
-                                <div class="card card-custom gutter-b">
-                                    <!--begin::Body-->
-                                    
-                                        <div class="card-body">
-                                            <!--begin::Top-->
-                                                <div class="d-flex align-items-center">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-40 symbol-light-success mr-10">
-                                                        <span class="symbol">
-                                                            {{-- <img src="assets/media/svg/avatars/007-boy-2.svg" class="h-75 align-self-end" alt="" /> --}}
-                                                            <img src="{{ url( asset("img_publicaciones/$res->logotipo")) }}" alt="Image" width="400%" height="30%">
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Description-->
-                                                    <h2 class="alert-heading mr-30">{{ $res->nombre }}</h2>
-                                                    <!--end::Description-->
-                                                    <button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
-                                                        <i class="fas fa-angle-double-right"></i>
-                                                    </button>
-                                                </div>
-                                            <!--end::Top-->
-                                            <!--begin::Form-->
-                                            {{-- <form id="kt_forms_widget_2_form" class="pt-10 ql-quil ql-quil-plain"> --}}
-                                                <!--begin::Editor-->
-                                                {{-- <input type="text" class="form-control" placeholder="Cuentanos que estas pensando..." onclick="abre_modal()"> --}}
-                                                <!--end::Editor-->
-                                                {{-- <div class="border-top my-5"></div> --}}
-                                                <!--end::Toolbar-->
-                                            {{-- </form> --}}
-                                            <!--end::Form-->
+                @auth
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" id="busar-rest" class="form-control" placeholder="BUSCAR RESTAURANT...">
+                    </div>
+                </div>
+                <br>
+                <div id="lista-restaurant">
+                    @forelse ($restaurant as $res)
+                        <div class="col-md-12">
+                            <div class="card card-custom gutter-b">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="symbol symbol-40 symbol-light-success mr-10">
+                                            <span class="symbol">
+                                                <img src="{{ url( asset("img_publicaciones/$res->logotipo")) }}" alt="Image" width="400%" height="30%">
+                                            </span>
+                                        </div>
+                                        <div class="alert-heading mr-30 pt-0">
+                                            <h2>{{ $res->nombre }}</h2>
+                                            <p>Atencion de {{ $res->hora_apertura }} a {{ $res->hora_cierre }}<br> 
+                                            <a href="{{ $res->ubicacion }}">Ubicacion</a></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
+                                                    <i class="fas fa-angle-double-right"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-sm btn-icon btn-primary" onclick="addLike('{{ $res->id }}')"><i class="fa fa-thumbs-up"></i></button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                @php
+                                                    $likes = App\like::where('restaurant_id',$res->id)->count();
+                                                @endphp
+                                                <span class="text-success" id="numlikes{{ $res->id }}">{{ $likes }}</span>
+                                                <span class="text-success">LIKES</span>
+                                            </div>
                                         </div>
                                         
-                                    <!--end::Body-->
+                                       
+                                    </div>
                                 </div>
-                            </div>    
-                            @empty
-                            <h3 class="text-danger">NO EXISTEN RESTAURANTES</h3>
-                        @endforelse  
-                        {{-- </a>                         --}}
-                    @endauth
+                            </div>
+                        </div>    
+                        @empty
+                        <h3 class="text-danger">NO EXISTEN RESTAURANTES</h3>
+                    @endforelse  
                 </div>
-                {{-- fin crea publicacion --}}
-                {{-- <div id="publicacionesAjax">
-
-                </div> --}}
-
+                @endauth
             </div>
 
             {{-- fin centro --}}
@@ -225,11 +103,18 @@
             <div class="col-md-3">
 
                 <div class="card card-custom sticky" data-sticky="true" data-margin-top="90" data-sticky-for="1023" data-sticky-class="sticky">
-                        <div class="alert mb-5 p-5" role="alert">
-                            <h4 class="alert-heading">PUBLICIDAD</h4>
-
-                            
+                    <div class="alert mb-2 p-5" role="alert">
+                        <h4 class="alert-heading">QUE SE TE ANTOJA!</h4>     
+                    </div>
+                    <div class="col-md-12">
+                        <div class="alert alert-dark mb-3 p-5" role="alert">
+                            <h4 class="alert-heading">AVISOS!</h4>
+                            <p>Mira toda la cantidad de restaurantes y variedad de comidas.</p>
+                            <div class="border-bottom border-white opacity-20 mb-5"></div>
+                            <p class="mb-0">Un gustito de ves en cuando no lastima.</p>
                         </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -249,22 +134,45 @@
 @section('js')
 
 <script type="text/javascript">
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    /*$(document).ready(function() {
-        console.log( "ready!" );
-    });*/
+    $(document).ready(function() {
+
+        $("#busar-rest").on("keyup", function() {
+            var busqueda = $('#busar-rest').val();
+            $.ajax({
+                url: "{{ url('Social/ajaxListadoRestaurant') }}",
+                data: {
+                    busqueda: busqueda
+                },
+                type: 'POST',
+                success: function(data) {
+                    $('#lista-restaurant').html(data);
+                }
+            });
+        });
+
+
+    });
+
+    
 
     // $(function() {
     //     $("#publicacionesAjax").load("{{ url('Social/ajaxPublicaciones') }}");
     // });
+
+    function ajaxListadoRestaurant(){
+
+    }
+    
     function menu(id) {
-			window.location.href = "{{ url('Categoria/menuC') }}/"+id;
-		}
+        window.location.href = "{{ url('Categoria/menuC') }}/"+id;
+    }
 
     function showMyImage(fileInput, numero) {
 
@@ -442,6 +350,21 @@
                 //$('#kt_forms_widget_11_input'+coment_id).val('')
             }
         })
+    }
+
+    function addLike(restaurante) {
+        
+        $.ajax({
+            url: "{{ url('Social/addLike') }}",
+            data: {
+                restaurante: restaurante,    
+            },
+            type: 'POST',
+            success: function(data) {
+                $('#numlikes'+restaurante).text(data);
+                
+            }
+        });
     }
 
     

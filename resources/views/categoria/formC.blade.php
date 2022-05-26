@@ -82,12 +82,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group">
+                                
                                     <label for="exampleInputPassword1">Password
                                         <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="password" name="password" required />
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" minlength="8" required />
+                                    <div class="input-group-append">
+                                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                    </div>
                                 </div>
+                                
                             </div>
+                            {{-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password Confirmation
+                                        <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="password2" name="password2" required />
+                                </div>
+                            </div> --}}
                         </div>
                     </form>
                 </div>
@@ -109,6 +121,18 @@
 @section('js')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/pages/crud/datatables/basic/basic.js') }}"></script>
+    <script type="text/javascript">
+        function mostrarPassword(){
+                var cambio = document.getElementById("password");
+                if(cambio.type == "password"){
+                    cambio.type = "text";
+                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                }else{
+                    cambio.type = "password";
+                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                }
+        } 
+    </script>
     <script type="text/javascript">
 		//Llamamamos a lista de ajax
 		$.ajaxSetup({

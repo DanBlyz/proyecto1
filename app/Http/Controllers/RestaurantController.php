@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\like;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +78,6 @@ class RestaurantController extends Controller
         }else{
             $restaurant = Restaurant::find($res_id);
         }
-        $restaurant->gerente_id     = Auth::user()->id;
         $restaurant->nombre         = $request->name;
         $restaurant->tipo           = $request->tipo;
         $restaurant->hora_apertura  = $request->hora_apertura;
@@ -111,9 +111,64 @@ class RestaurantController extends Controller
         
         return redirect('Categoria/restaurantesG');
     }
+    public function modificavalidacion(Request $request, $res_id){
 
-    // public function listadoM(Request $request, $res_id){
-    //     $menu = Menu::where('restaurant_id',$res_id)->get();
-    //     return view('categoria.menuP')->with(compact('menu'));
-    // }
+        $restaurant = Restaurant::find($res_id);
+        if($restaurant->validacion == 'si'){
+            $restaurant->validacion = 'no';
+        }else{
+            $restaurant->validacion = 'si';
+        }
+        $restaurant->save();
+        
+        return redirect('Categoria/restaurantesA');
+    }
+
+    public function ajaxListadoRestaurant(Request $request) {
+
+        $nombre = $request->input('busqueda');
+        if($nombre == ""){
+            $restaurantes = Restaurant::all();
+        }else{
+            $restaurantes = Restaurant::where('nombre','LIKE', "%$nombre%")
+            ->get();
+        }
+
+
+        return view('social.ajaxListadoRestaurant')->with(compact('restaurantes'));
+    }
+
+    public function addLike(Request $request) {
+
+        $usuario_id = Auth::user()->id;
+
+        $CanlikeUser = like::where('usuario_id',$usuario_id)
+                            ->where('restaurant_id',$request->input('restaurante'))
+                            ->count();
+
+        if($CanlikeUser > 0){
+
+            $like = like::where('usuario_id',$usuario_id)
+                            ->where('restaurant_id',$request->input('restaurante'))
+                            ->first();
+
+            like::destroy($like->id);
+
+        }else{
+             $like = new Like();
+
+            $like->usuario_id = Auth::user()->id;
+            $like->restaurant_id = $request->input('restaurante');
+            $like->like = 1;
+
+            $like->save();
+
+        }
+
+        $CanlikeUser = like::where('restaurant_id',$request->input('restaurante'))
+                            ->count();
+
+        return $CanlikeUser;
+        
+    }
 }

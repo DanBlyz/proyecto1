@@ -76,6 +76,7 @@ Route::post('Categoria/guardaRes', 'RestaurantController@guardaRes');
 Route::get('Categoria/eliminaRes/{res_id}', 'RestaurantController@eliminaRes');
 //ADMIN CON RESTAURANT
 Route::get('Categoria/restaurantesA', 'RestaurantController@listadoA');
+Route::get('Categoria/modificavalidacion/{res_id}', 'RestaurantController@modificavalidacion');
 Route::post('Categoria/guardaResA', 'RestaurantController@guardaResA');
 //GERENTES CON RESTAURNT Y MENU
 Route::get('Categoria/menuP/{res_id}', 'MenuController@listadoM');
@@ -90,10 +91,16 @@ Route::get('Categoria/eliminaP/{platillo_id}', 'PlatilloController@eliminaP');
 Route::get('Categoria/formC', 'CategoriaController@formC');
 Route::post('Categoria/guardaC', 'UserController@guardaC');
 
+
 //CLIENTE CON RESTAURANTES
 Route::get('Social/inicio', 'RestaurantController@listadoC');
+Route::post('Social/ajaxListadoRestaurant', 'RestaurantController@ajaxListadoRestaurant');
+Route::post('Social/addLike', 'RestaurantController@addLike');
 Route::get('Categoria/menuC/{res_id}', 'MenuController@listadoC');
 Route::get('Categoria/platilloC/{menu_id}', 'PlatilloController@listadoC');
+
+//COMENTARIOS
+Route::post('Categoria/guardaComentario', 'MenuController@guardaComent');
 
 // Route::post('User/ajaxListado', 'UserController@ajaxlistado');
 // Route::get('User/nuevo', 'UserController@nuevo');

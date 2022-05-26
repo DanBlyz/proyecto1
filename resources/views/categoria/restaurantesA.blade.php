@@ -82,15 +82,6 @@
                                 </div>        
                             </div>
                         </div>
-						{{-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Descripcion
-                                    <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="descripcion" name="descripcion" required />
-                                </div>        
-                            </div>
-                        </div> --}}
 						<div class="row">
 							<div class="col-md-12">
 								<div class="custom-file">
@@ -169,7 +160,18 @@
 								<td>{{ $res->hora_apertura }}</td>
 								<td>{{ $res->hora_cierre }}</td>
 								<td>{{ $res->direccion }}</td>
-								<td>{{ $res->validacion }}</td>
+								<td>{{ $res->validacion }}
+									@if ( $res->validacion == 'si')
+										<div class="input-group-append">
+											<button id="validacion_si" class="btn btn-sm btn-info" type="button" onclick="modificavalidacion('{{ $res->id }}')"> <i class="far fa-grin-alt"></i> </button>
+										</div>
+									@else
+										<div class="input-group-append">
+											<button id="validacion_no" class="btn btn-sm btn-danger" type="button" onclick="modificavalidacion('{{ $res->id }}')"> <i class="far fa-dizzy"></i> </button>
+										</div>
+									@endif
+									
+								</td>
 								<td>
 									<button type="button" class="btn btn-sm btn-icon btn-success" onclick="menu('{{ $res->id }}')">
 										<i class="fas fa-book menu-icon"></i>
@@ -192,52 +194,6 @@
 			</div>
 			<!--end: Datatable-->
 		</div>
-		{{-- <div class="card-body">
-			<form  id="formulario-busqueda-usuarios">
-				@csrf
-				<div class="row">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="exampleInputPassword1">NOMBRE</label>
-							<input type="text" class="form-control" id="nombre" name="nombre" />
-						</div>
-					</div>
-
-					<div class="col-md-2">
-						<div class="form-group">
-							<label for="exampleInputPassword1">CARNET</label>
-							<input type="text" class="form-control" id="ci" name="ci" />
-						</div>
-					</div>
-
-					<div class="col-md-2">
-						<div class="form-group">
-							<label for="exampleInputPassword1">EMAIL</label>
-							<input type="text" class="form-control" id="email" name="email" />
-						</div>
-					</div>
-
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="exampleInputPassword1">PERFIL</label>
-							<input type="text" class="form-control" id="perfil" name="perfil" />
-						</div>
-					</div>
-
-					<div class="col-md-2">
-						<div class="form-group">
-							<p style="margin-top: 24px;"></p>
-							<button class="btn btn-success btn-block" type="button" onclick="buscaUsuario()" ><i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!--begin: Datatable-->
-			<div class="table-responsive m-t-40" id="ajaxUser">
-
-			</div>
-			<!--end: Datatable-->
-		</div> --}}
 	</div>
 									<!--end::Card-->
 @stop
@@ -329,20 +285,9 @@
 		function menu(id) {
 			window.location.href = "{{ url('Categoria/menuP') }}/"+id;
 		}
-
-		// $(function () {
-		// 	// funcion para llamar a los datos iniciales de la tabla
-		// 	let datosBusquda = $('#formulario-busqueda-usuarios').serializeArray();
-
-		// 	$.ajax({
-		// 		url: "{{ url('User/ajaxListado') }}",
-		// 		data: datosBusquda,
-		// 		type: 'POST',
-		// 		success: function(data) {
-		// 			$('#ajaxUser').html(data);
-		// 		}
-		// 	});
-    	// });
+		function modificavalidacion(id) {
+			window.location.href = "{{ url('Categoria/modificavalidacion') }}/"+id;
+		}
 
 		function buscaUsuario(){
 
@@ -366,33 +311,7 @@
 		function listaSector(id){
 			window.location.href = "{{ url('User/listaSector')}}/"+id;
 		}
-    	// $(document).ready(function() {
-    	//     $('#tabla_usuarios').DataTable({
-		// 		iDisplayLength: 10,
-		// 		processing: true,
-		// 		browser: false,
-		// 		serverSide: true,
-		// 		ajax: "{{ url('User/ajax_listado') }}",
-		// 		"order": [[ 0, "desc" ]],
-		// 		columns: [
-		// 			{data: 'id', name: 'id'},
-		// 			{data: 'name', name: 'name'},
-		// 			{data: 'ci', name: 'ci'},
-		// 			{data: 'email', name: 'email'},
-		// 			{data: 'perfil', name: 'perfil'},
-		// 			{data: 'celulares', name: 'celulares'},
-		// 			{data: 'action'},
-		// 		],
-        //         language: {
-        //             url: '{{ asset('datatableEs.json') }}'
-        //         }
-        //     });
-    	// } );
-
-    	// function edita(id)
-    	// {
-    	// 	window.location.href = "{{ url('User/edita') }}/"+id;
-    	// }
+    	
 		function showMyImage(fileInput, numero) {
 
 		var files = fileInput.files;

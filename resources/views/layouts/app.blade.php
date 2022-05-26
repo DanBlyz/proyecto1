@@ -116,11 +116,11 @@
 								<!--begin::Header Menu-->
 								<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
 									<!--begin::Header Nav-->
-									<ul class="menu-nav">
+									{{-- <ul class="menu-nav">
 										<li class="menu-item menu-item-submenu menu-item-rel menu-item-active" data-menu-toggle="click" aria-haspopup="true">
 											<span class="text-primary">Aqui la fecha</span>											
 										</li>
-									</ul>
+									</ul> --}}
 									<!--end::Header Nav-->
 								</div>
 								<!--end::Header Menu-->
@@ -129,7 +129,7 @@
 							<!--begin::Topbar-->
 							<div class="topbar">
 								<!--begin::Search-->
-								<div class="dropdown" id="kt_quick_search_toggle">
+								{{-- <div class="dropdown" id="kt_quick_search_toggle">
 									<!--begin::Toggle-->
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-lg btn-dropdown mr-1">
@@ -183,10 +183,10 @@
 										</div>
 									</div>
 									<!--end::Dropdown-->
-								</div>
+								</div> --}}
 								<!--end::Search-->
 								<!--begin::Notifications-->
-								<div class="dropdown">
+								{{-- <div class="dropdown">
 									<!--begin::Toggle-->
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
@@ -641,10 +641,10 @@
 										</form>
 									</div>
 									<!--end::Dropdown-->
-								</div>
+								</div> --}}
 								<!--end::Notifications-->
 								<!--begin::Quick Actions-->
-								<div class="dropdown">
+								{{-- <div class="dropdown">
 									<!--begin::Toggle-->
 									<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
 										<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
@@ -754,10 +754,10 @@
 										<!--end:Nav-->
 									</div>
 									<!--end::Dropdown-->
-								</div>
+								</div> --}}
 								<!--end::Quick Actions-->
 								<!--begin::Cart-->
-								<div class="topbar-item">
+								{{-- <div class="topbar-item">
 									<div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1" id="kt_quick_cart_toggle">
 										<span class="svg-icon svg-icon-xl svg-icon-primary">
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
@@ -771,7 +771,7 @@
 											<!--end::Svg Icon-->
 										</span>
 									</div>
-								</div>
+								</div> --}}
 								<!--end::Cart-->
 								<!--begin::Quick panel-->
 								<div class="topbar-item">
